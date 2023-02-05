@@ -12,7 +12,7 @@ export async function build(root: string) {
 
   // 2. 引入server-entry模块
   const serverEntryPath = path.join(root, '.temp', 'ssr-entry.js');
-  // 3. 服务端渲染，产品html
+  // 3. 服务端渲染，产物html
   const { render } = await import(pathToFileURL(serverEntryPath).href);
   console.log('pathToFileURL(serverEntryPath)', pathToFileURL(serverEntryPath));
   renderPage(render, root, clientBundle);
