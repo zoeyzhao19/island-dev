@@ -12,5 +12,6 @@ export default defineBuildConfig({
   outDir: 'dist',
   rollup: {
     emitCJS: true,
+    cjsBridge: true,
   },
 });

@@ -11,8 +11,11 @@ export function pluginIndexHtml(): Plugin {
         server.middlewares.use(async (req, res, next) => {
           // custom handle request...
           let html = await fs.readFile(DEFAULT_TEMPLATE_PATH, 'utf-8');
-
-          html = await server.transformIndexHtml(req.url!, html);
+          html = await server.transformIndexHtml(
+            req.url!,
+            html,
+            req.originalUrl
+          );
           res.setHeader('Content-Type', 'text/html');
           res.end(html);
         });
