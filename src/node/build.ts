@@ -1,4 +1,5 @@
 import path from 'path';
+import { pathToFileURL } from 'url';
 import fs from 'fs-extra';
 import { build as viteBUild } from 'vite';
 import type { InlineConfig } from 'vite';
@@ -10,12 +11,11 @@ export async function build(root: string) {
   const [clientBundle] = await bundle(root);
 
   // 2. 引入server-entry模块
-  const absoluteRoot = path.resolve(root);
-  console.log({ absoluteRoot });
-  const serverEntryPath = path.join(absoluteRoot, '.temp', 'ssr-entry.js');
+  const serverEntryPath = path.join(root, '.temp', 'ssr-entry.js');
   // 3. 服务端渲染，产品html
-  const { render } = require(serverEntryPath);
-  renderPage(render, absoluteRoot, clientBundle);
+  const { render } = await import(pathToFileURL(serverEntryPath).href);
+  console.log('pathToFileURL(serverEntryPath)', pathToFileURL(serverEntryPath));
+  renderPage(render, root, clientBundle);
 }
 
 async function renderPage(
@@ -45,8 +45,8 @@ async function renderPage(
 
   `.trim();
 
-  await fs.writeFile(path.join(root, 'build', 'index.html'), html);
-  await fs.remove(path.join(root, '.temp'));
+  await fs.writeFile(path.resolve(root, 'build', 'index.html'), html);
+  await fs.remove(path.resolve(root, '.temp'));
 }
 
 async function bundle(root: string) {
