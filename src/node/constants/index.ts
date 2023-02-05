@@ -8,3 +8,9 @@ export const CLIENT_ENTRY_PATH = path.join(
   'runtime',
   'client-entry.tsx'
 );
+export const SERVER_ENTRY_PATH = path.join(
+  cwd,
+  'src',
+  'runtime',
+  'ssr-entry.tsx'
+);
