@@ -12,9 +12,8 @@ export async function build(root: string) {
 
   // 2. 引入server-entry模块
   const serverEntryPath = path.join(root, '.temp', 'ssr-entry.js');
-  // 3. 服务端渲染，产品html
+  // 3. 服务端渲染，产出html
   const { render } = await import(pathToFileURL(serverEntryPath).href);
-  console.log('pathToFileURL(serverEntryPath)', pathToFileURL(serverEntryPath));
   renderPage(render, root, clientBundle);
 }
 
@@ -51,17 +50,17 @@ async function renderPage(
 
 async function bundle(root: string) {
   try {
-    const resolveViteConfig = (isServer: boolean): InlineConfig => {
+    const resolveViteConfig = (isSSrBuild: boolean): InlineConfig => {
       return {
         mode: 'production',
         root,
         build: {
-          ssr: isServer,
-          outDir: isServer ? '.temp' : 'build',
+          ssr: isSSrBuild,
+          outDir: isSSrBuild ? '.temp' : 'build',
           rollupOptions: {
-            input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
+            input: isSSrBuild ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
             output: {
-              format: isServer ? 'cjs' : 'esm',
+              format: isSSrBuild ? 'cjs' : 'esm',
             },
           },
         },
