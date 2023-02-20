@@ -4,7 +4,6 @@ import * as execa from 'execa';
 
 const exampleDir = path.resolve(__dirname, '../e2e/playground/basic');
 const defaultExecaOpts = {
-  cwd: exampleDir,
   stdout: process.stdout,
   stdin: process.stdin,
   stderr: process.stderr,
@@ -21,20 +20,16 @@ async function prepareE2E() {
 
   execa.commandSync('npx playwright install', {
     cwd: path.join(__dirname, '../'),
-    stdout: process.stdout,
-    stdin: process.stdin,
-    stderr: process.stderr,
+    ...defaultExecaOpts,
   });
 
   execa.commandSync('pnpm i', {
     cwd: exampleDir,
-    stdout: process.stdout,
-    stdin: process.stdin,
-    stderr: process.stderr,
+    ...defaultExecaOpts,
   });
 
   // exec dev command
-  execa.commandSync('pnpm dev', defaultExecaOpts);
+  execa.commandSync('pnpm dev', { cwd: exampleDir, ...defaultExecaOpts });
 }
 
 prepareE2E();

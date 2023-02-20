@@ -1,7 +1,7 @@
 import path from 'path';
 import { pathToFileURL } from 'url';
 import fs from 'fs-extra';
-import { build as viteBUild } from 'vite';
+import { build as viteBuild } from 'vite';
 import type { InlineConfig } from 'vite';
 import type { RollupOutput } from 'rollup';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
@@ -68,10 +68,10 @@ async function bundle(root: string) {
     };
 
     const clientBuild = async (): Promise<RollupOutput> => {
-      return viteBUild(resolveViteConfig(false)) as any;
+      return viteBuild(resolveViteConfig(false)) as any;
     };
     const serverBuild = async (): Promise<RollupOutput> => {
-      return viteBUild(resolveViteConfig(true)) as any;
+      return viteBuild(resolveViteConfig(true)) as any;
     };
 
     console.log('Build client + server bundles...');
