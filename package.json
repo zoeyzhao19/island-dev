@@ -2,7 +2,8 @@
   "name": "island-dev",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.mjs",
   "scripts": {
     "start": "cross-env DEV=true unbuild --stub",
     "build": "unbuild",

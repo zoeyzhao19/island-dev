@@ -10,6 +10,10 @@
     "strictNullChecks": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@*": ["src/*"]
+    }
   }
 }

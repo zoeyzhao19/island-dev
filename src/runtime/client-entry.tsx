@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import siteData from 'virtual:island:site-data';
 import { App } from './App';
 
 export function renderInBrowser() {
@@ -10,3 +11,4 @@ export function renderInBrowser() {
 }
 
 renderInBrowser();
+console.log(siteData);
