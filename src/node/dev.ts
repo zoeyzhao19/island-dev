@@ -10,7 +10,7 @@ export async function createDevServer(
 ) {
   const config = await resolveConfig(root, 'serve', 'development');
   return createServer({
-    root,
+    root: PACKAGE_ROOT,
     plugins: [
       pluginIndexHtml(),
       pluginReact(),

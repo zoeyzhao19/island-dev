@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import siteData from 'virtual:island:site-data';
+import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
 
 export function renderInBrowser() {
@@ -7,8 +8,11 @@ export function renderInBrowser() {
   if (!root) {
     throw new Error('Root element not found');
   }
-  ReactDOM.createRoot(root).render(<App />);
+  ReactDOM.createRoot(root).render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
 }
 
 renderInBrowser();
-console.log(siteData);

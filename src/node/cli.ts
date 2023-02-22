@@ -1,5 +1,6 @@
 import cac from 'cac';
 import { build } from './build';
+import { resolveConfig } from './config';
 
 const cli = cac('island');
 
@@ -19,7 +20,8 @@ cli.command('dev [root]', 'start dev server').action(async (root: string) => {
 cli
   .command('build [root]', 'build in production')
   .action(async (root: string) => {
-    await build(root);
+    const config = await resolveConfig(root, 'build', 'production');
+    await build(root, config);
   });
 
 cli.help();
