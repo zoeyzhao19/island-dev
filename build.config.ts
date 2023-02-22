@@ -26,14 +26,6 @@ export default defineBuildConfig({
   rollup: {
     emitCJS: true,
     cjsBridge: true,
-    // alias: {
-    //   entries: [
-    //     {
-    //       find: '@shared/types',
-    //       replacement: path.resolve(projectRootDir, 'src/shared/types'),
-    //     },
-    //   ],
-    // },
   },
   hooks: {
     'rollup:done'() {
