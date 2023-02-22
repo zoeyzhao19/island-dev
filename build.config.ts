@@ -14,6 +14,9 @@ export default defineBuildConfig({
     {
       input: './src/index',
     },
+    {
+      input: './src/node/dev',
+    },
   ],
   clean: true,
   declaration: true,
