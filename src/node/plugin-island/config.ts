@@ -15,7 +15,6 @@ export function pluginConfig(
     name: 'island:config',
     config() {
       return {
-        root: PACKAGE_ROOT,
         resolve: {
           alias: {
             '@runtime': path.join(PACKAGE_ROOT, 'src', 'runtime', 'index.ts'),
