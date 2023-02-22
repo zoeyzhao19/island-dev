@@ -5,7 +5,6 @@ import prettier from 'prettier/standalone';
 import parserBabel from 'prettier/parser-babel';
 
 const projectRootDir = path.resolve(__dirname);
-console.log('xxx', path.resolve(projectRootDir, 'src/shared/types'));
 
 export default defineBuildConfig({
   entries: [
@@ -22,7 +21,6 @@ export default defineBuildConfig({
   alias: {
     '@shared/types': path.resolve(projectRootDir, 'src/shared/types'),
   },
-  externals: ['@shared/types'],
   rollup: {
     emitCJS: true,
     cjsBridge: true,
