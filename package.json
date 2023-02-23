@@ -2,7 +2,6 @@
   "name": "island-dev",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.mjs",
   "scripts": {
     "start": "cross-env DEV=true unbuild --stub",
     "build": "unbuild",
@@ -10,6 +9,18 @@
     "test": "vitest run",
     "prepare:e2e": "tsx scripts/prepare-e2e.ts",
     "test:e2e": "playwright test"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./dev": {
+      "types": "./dist/dev.d.ts",
+      "import": "./dist/dev.mjs",
+      "require": "./dist/dev.js"
+    }
   },
   "bin": {
     "island": "bin/island.js"

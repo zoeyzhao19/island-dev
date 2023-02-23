@@ -1,5 +1,5 @@
-import { defineConfig } from '../dist/index.mjs';
+// import { defineConfig } from '../dist';
 
-export default defineConfig({
+export default {
   title: '123456',
-});
+};
