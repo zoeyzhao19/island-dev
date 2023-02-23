@@ -1,5 +1,5 @@
-// import { defineConfig } from '../dist';
+import { defineConfig } from '../dist/index.cjs';
 
-export default {
+export default defineConfig({
   title: '123456',
-};
+});
