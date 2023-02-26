@@ -3,6 +3,7 @@ import type { SiteConfig } from '@shared/types';
 import { pluginIndexHtml } from './plugin-island/indexHtml';
 import { pluginConfig } from './plugin-island/config';
 import { pluginRoutes } from './plugin-routes';
+import { createMdxPlugin } from './plugin-mdx';
 
 export function createVitePlugins(
   config: SiteConfig,
@@ -18,5 +19,6 @@ export function createVitePlugins(
     pluginRoutes({
       root: config.root,
     }),
+    createMdxPlugin(),
   ];
 }
