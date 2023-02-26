@@ -5,9 +5,8 @@ import { build as viteBuild } from 'vite';
 import type { InlineConfig } from 'vite';
 import type { RollupOutput } from 'rollup';
 import type { SiteConfig } from '@shared/types';
-import pluginReact from '@vitejs/plugin-react';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
-import { pluginConfig } from './plugin-island';
+import { createVitePlugins } from './vite-plugin';
 
 export async function build(root: string, config: SiteConfig) {
   // 1. bundle -client端 + server端
@@ -57,7 +56,7 @@ async function bundle(root: string, config: SiteConfig) {
       return {
         mode: 'production',
         root,
-        plugins: [pluginConfig(config)],
+        plugins: createVitePlugins(config),
         ssr: {
           noExternal: ['react-router-dom'],
         },

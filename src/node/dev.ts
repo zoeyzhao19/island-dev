@@ -1,9 +1,7 @@
 import { createServer } from 'vite';
-import pluginReact from '@vitejs/plugin-react';
 import { PACKAGE_ROOT } from './constants';
-import { pluginIndexHtml, pluginConfig } from './plugin-island';
-import { pluginRoutes } from './plugin-routes';
 import { resolveConfig } from './config';
+import { createVitePlugins } from './vite-plugin';
 
 export async function createDevServer(
   root: string,
@@ -11,12 +9,7 @@ export async function createDevServer(
 ) {
   const config = await resolveConfig(root, 'serve', 'development');
   return createServer({
-    plugins: [
-      pluginIndexHtml(),
-      pluginReact(),
-      pluginConfig(config, restartServer),
-      pluginRoutes({ root: config.root }),
-    ],
+    plugins: createVitePlugins(config, restartServer),
     server: {
       fs: {
         allow: [PACKAGE_ROOT],
