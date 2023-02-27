@@ -38,11 +38,11 @@ export default defineBuildConfig({
           const JTIT_RE = /(interopDefault: true, esmResolve: true)/;
           const matches = content.match(JTIT_RE);
           if (matches && matches[0] && matches[1]) {
-            if (ext === 'mjs') {
+            if (ext === '.mjs') {
               content = `import dynamicImport from '@babel/plugin-proposal-dynamic-import';\n${content}`;
             }
             const replaceStr =
-              ext === 'mjs'
+              ext === '.mjs'
                 ? 'transformOptions: { babel: { plugins: [dynamicImport] }}'
                 : "transformOptions: {babel: { plugins: [require('@babel/plugin-proposal-dynamic-import')] }}";
             content = content.replace(
