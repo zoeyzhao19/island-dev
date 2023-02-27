@@ -45,9 +45,11 @@ export class RouteService {
   }
 
   generateRouteCode() {
+    // workaround unbuild commonJS shims inject to wrong position
+    const IMPORT_KEY = 'import';
     return `
-import React from 'react'
-import loadable from '@loadable/component'
+${IMPORT_KEY} React from 'react'
+${IMPORT_KEY} loadable from '@loadable/component'
 ${this.routeData
   .map((route, index) => {
     return `const Route${index} = loadable(() => import('${route.absolutePath}'))`;
